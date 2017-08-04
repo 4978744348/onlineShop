@@ -13,6 +13,27 @@
 	<bean id="test" class="com.myproject.controllers.Test">
 		<property name="mes" value="Hello World!"></property>
 	</bean>
-	
-	
+
+	<bean id="property"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:datasourse.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="datasource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+		<property name="url" value="${data.db.url}"></property>
+		<property name="username" value="${data.db.name}"></property>
+		<property name="password" value="${data.db.pass}"></property>
+	</bean>
+
+	<bean id="adminDao" class="com.myproject.dao.db.AdminDaoImpl">
+		<property name="datasource" ref="datasource"></property>
+	</bean>
+
+
 </beans>
