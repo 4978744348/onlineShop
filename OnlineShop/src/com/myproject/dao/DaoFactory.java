@@ -7,8 +7,8 @@ public class DaoFactory {
 	
 	 private static final ApplicationContext CONTEXT = new ClassPathXmlApplicationContext("spring-dao.xml");
 	 
-	 public static AdminDao getAdminDao(){
-		return (AdminDao) CONTEXT.getBean("adminDao");
+	 public static UserDao getUserDao(){
+		return (UserDao) CONTEXT.getBean("adminDao");
 		 
 	 }
 

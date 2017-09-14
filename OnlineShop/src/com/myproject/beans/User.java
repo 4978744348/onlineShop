@@ -1,6 +1,6 @@
 package com.myproject.beans;
 
-public class Admin {
+public class User {
 
 	private long id;
 	private String login;
@@ -32,7 +32,7 @@ public class Admin {
 
 	@Override
 	public String toString() {
-		return "Admin [id=" + id + ", login=" + login + ", password=" + password + "]";
+		return "User [id=" + id + ", login=" + login + ", password=" + password + "]";
 	}
 
 }

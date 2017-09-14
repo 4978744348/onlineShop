@@ -9,7 +9,7 @@ public class AdminGetAll {
 	
 	@Test
 	public void getAll() throws DaoException{
-		DaoFactory.getAdminDao().getAll();
+		DaoFactory.getUserDao().getAll();
 	}
 
 }

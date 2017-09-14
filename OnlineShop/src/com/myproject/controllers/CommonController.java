@@ -5,13 +5,12 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.myproject.beans.Admin;
+import com.myproject.beans.User;
 import com.myproject.dao.DaoException;
 import com.myproject.dao.DaoFactory;
 
@@ -26,7 +25,7 @@ public class CommonController {
 	@RequestMapping("/Authenticate.spr")
 	public ModelAndView authenticate(@RequestParam("login") String login, 
 			@RequestParam("password") String password, HttpSession session) throws DaoException {
-		Admin admin = DaoFactory.getAdminDao().getByLoginAndPassword(login, password);
+		User admin = DaoFactory.getUserDao().getByLoginAndPassword(login, password);
 		ModelMap model = new ModelMap();
 		if(admin != null){
 			session.setAttribute("user", admin);
@@ -50,7 +49,7 @@ public class CommonController {
 	
 	@RequestMapping("List.spr")
 	public ModelAndView getAllAdmins() throws DaoException{
-		List<Admin> admin = DaoFactory.getAdminDao().getAll();
+		List<User> admin = DaoFactory.getUserDao().getAll();
 		return new ModelAndView("listCustomers","listOfAdmins",admin);
 	}
 
