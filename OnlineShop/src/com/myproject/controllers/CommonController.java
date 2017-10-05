@@ -38,19 +38,23 @@ public class CommonController {
 	}
 	
 	@RequestMapping("/Logout.spr")
-	public ModelAndView logout(@RequestParam("login") String login, 
-			@RequestParam("password") String password, HttpSession session) throws DaoException{
+	public ModelAndView logout(String login, String password, HttpSession session) throws DaoException{
 	if(session != null){
 		session.invalidate();
 	}
-		
 		return new ModelAndView("home","out","you lefted account");
 	}
 	
 	@RequestMapping("List.spr")
-	public ModelAndView getAllAdmins() throws DaoException{
-		List<User> admin = DaoFactory.getUserDao().getAll();
-		return new ModelAndView("listCustomers","listOfAdmins",admin);
+	public ModelAndView getAllAdmins(HttpSession session) throws DaoException{
+		User user = (User) session.getAttribute("user");
+		List<User> userlist = null;
+		if(user != null){
+			userlist = DaoFactory.getUserDao().getAll();
+		}else{
+			
+		}
+		return new ModelAndView("listCustomers","listOfAdmins",userlist );
 	}
 
 }
